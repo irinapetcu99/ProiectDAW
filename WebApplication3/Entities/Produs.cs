@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace WebApplication3.Entities
 {
-    public class User
+    public class Produs
     {
         [Key]
-        public int UserId { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public int ProdusId { get; set; }
+        public string Type { get; set; }
         public virtual Comanda Comanda { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace WebApplication3.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Comanda> Comanda { get; set; }
+        public DbSet<Produs> Produs { get; set; }
 
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         {
@@ -20,6 +22,15 @@ namespace WebApplication3.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Comanda>()
+            .HasMany(x => x.Produse)
+            .WithOne(y => y.Comanda);
+
+            builder.Entity<User>()
+            .HasOne(x => x.Comanda)
+            .WithOne(y => y.User)
+            .HasForeignKey<Comanda>(z => z.UserId);
+
             builder.Entity<UserRole>()
                 .HasOne(x => x.User)
                 .WithMany(y => y.UserRoles)

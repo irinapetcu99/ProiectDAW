@@ -86,7 +86,7 @@ namespace WebApplication3.Migrations
                     ProdusId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ComandaId = table.Column<int>(type: "int", nullable: true)
+                    ComandaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,7 +96,7 @@ namespace WebApplication3.Migrations
                         column: x => x.ComandaId,
                         principalTable: "Comanda",
                         principalColumn: "ComandaId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

@@ -8,5 +8,7 @@ namespace WebApplication3.Repositories
 {
     public interface IComandaRepository : IBaseRepository<Comanda>
     {
+        Comanda GetComandaAllDetails(int id);
+        List<Comanda> GetComenziAllDetails();
     }
 }

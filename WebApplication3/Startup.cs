@@ -39,6 +39,8 @@ namespace WebApplication3
             services.AddTransient<IProdusRepository, ProdusRepository>();
             services.AddTransient<IComandaRepository, ComandaRepository>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IProdusService, ProdusService>();
+            services.AddTransient<IComandaService, ComandaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

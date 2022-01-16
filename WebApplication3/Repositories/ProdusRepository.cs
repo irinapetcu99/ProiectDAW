@@ -13,5 +13,16 @@ namespace WebApplication3.Repositories
         {
 
         }
+        public Produs GetProdusAllDetails(int id)
+        {
+            return _table.Where(arg => arg.ProdusId == id)
+                .FirstOrDefault();
+        }
+
+        public List<Produs> GetProduseAllDetails()
+        {
+            return _table
+                .ToList();
+        }
     }
 }

@@ -13,5 +13,16 @@ namespace WebApplication3.Repositories
         {
 
         }
+        public Comanda GetComandaAllDetails(int id)
+        {
+            return _table.Where(arg => arg.ComandaId == id)
+                .FirstOrDefault();
+        }
+
+        public List<Comanda> GetComenziAllDetails()
+        {
+            return _table
+                .ToList();
+        }
     }
 }

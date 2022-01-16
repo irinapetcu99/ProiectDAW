@@ -22,9 +22,10 @@ namespace WebApplication3.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Comanda>()
-            .HasMany(x => x.Produse)
-            .WithOne(y => y.Comanda);
+            builder.Entity<Produs>()
+                .HasOne(x => x.Comanda)
+                .WithMany(y => y.Produse)
+                .HasForeignKey(z => z.ComandaId);
 
             builder.Entity<User>()
             .HasOne(x => x.Comanda)

@@ -12,6 +12,6 @@ namespace WebApplication3.Entities
         public int ProdusId { get; set; }
         public string Type { get; set; }
         public int ComandaId { get; set; }
-        public virtual Comanda Comanda { get; set; }
+        public Comanda Comanda { get; set; }
     }
 }

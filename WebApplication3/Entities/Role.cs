@@ -11,6 +11,6 @@ namespace WebApplication3.Entities
         [Key]
         public int RoleId { get; set; }
         public string Type { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

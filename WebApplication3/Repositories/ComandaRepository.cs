@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,5 +25,19 @@ namespace WebApplication3.Repositories
             return _table
                 .ToList();
         }
+
+        public List<Comanda> GetAllWithInclude()
+        {
+            return _table.Include(x => x.Produse).ToList();
+        }
+
+        public List<Comanda> GetAllWithJoin()
+        {
+            var result = _table.Join(_context.Produs, x => x.ComandaId, y => y.ComandaId,
+                (x, y) => new { x, y }).Select(obj => obj.x);
+
+            return result.ToList();
+        }
+
     }
 }

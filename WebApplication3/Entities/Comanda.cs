@@ -11,7 +11,7 @@ namespace WebApplication3.Entities
         [Key]
         public int ComandaId { get; set; }
         public int UserId { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<Produs> Produse { get; set; }
+        public User User { get; set; }
+        public ICollection<Produs> Produse { get; set; }
     }
 }

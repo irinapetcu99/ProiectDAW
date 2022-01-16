@@ -46,7 +46,7 @@ namespace WebApplication3.Services
 
         public List<Comanda> GetAll()
         {
-            return _comandaRepository.GetComenziAllDetails();
+            return _comandaRepository.GetAllWithInclude();
         }
 
         public Comanda Update(Comanda cat)

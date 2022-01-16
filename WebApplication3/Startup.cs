@@ -10,6 +10,7 @@ using WebApplication3.Data;
 using WebApplication3.Repositories;
 using WebApplication3.Services.IServices;
 using WebApplication3.Services;
+using Newtonsoft;
 
 namespace WebApplication3
 {
@@ -33,6 +34,9 @@ namespace WebApplication3
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IUserRoleRepository, UserRoleRepository>();
@@ -56,6 +60,7 @@ namespace WebApplication3
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

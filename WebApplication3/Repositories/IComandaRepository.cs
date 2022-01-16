@@ -10,5 +10,7 @@ namespace WebApplication3.Repositories
     {
         Comanda GetComandaAllDetails(int id);
         List<Comanda> GetComenziAllDetails();
+        List<Comanda> GetAllWithInclude();
+        List<Comanda> GetAllWithJoin();
     }
 }

@@ -10,7 +10,8 @@ namespace WebApplication3.Repositories
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);
-        T FindById(int id);
+        T FindById(object id);
+        Task<T> FindByIdAsync(object id);
         List<T> FindAll();
         bool SaveChanges();
     }

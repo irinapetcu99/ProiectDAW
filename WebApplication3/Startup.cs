@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using WebApplication3.Data;
+using WebApplication3.Repositories;
+using WebApplication3.Services.IServices;
+using WebApplication3.Services;
 
 namespace WebApplication3
 {
@@ -22,6 +25,7 @@ namespace WebApplication3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddDbContext<SchoolContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -29,6 +33,12 @@ namespace WebApplication3
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IUserRoleRepository, UserRoleRepository>();
+            services.AddTransient<IProdusRepository, ProdusRepository>();
+            services.AddTransient<IComandaRepository, ComandaRepository>();
+            services.AddTransient<IRoleService, RoleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

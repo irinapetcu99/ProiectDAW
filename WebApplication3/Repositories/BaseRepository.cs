@@ -34,10 +34,6 @@ namespace WebApplication3.Repositories
             return _table.ToList();
         }
 
-        public T FindById(int id)
-        {
-            return _table.Find(id);
-        }
 
         public bool SaveChanges()
         {
@@ -47,6 +43,18 @@ namespace WebApplication3.Repositories
         public void Update(T entity)
         {
             _table.Update(entity);
+        }
+
+        public T FindById(object id)
+        {
+            var result = _table.Find(id);
+            _context.Entry(result).State = EntityState.Detached;
+            return result;
+        }
+
+        public async Task<T> FindByIdAsync(object id)
+        {
+            return await _table.FindAsync(id);
         }
     }
 }

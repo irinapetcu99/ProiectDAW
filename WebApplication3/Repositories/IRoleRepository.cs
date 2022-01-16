@@ -8,5 +8,7 @@ namespace WebApplication3.Repositories
 {
     public interface IRoleRepository : IBaseRepository<Role>
     {
+        Role GetRoleAllDetails(int id);
+        List<Role> GetRolesAllDetails();
     }
 }

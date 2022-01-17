@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication3.Auth;
 using WebApplication3.Entities;
 
 namespace WebApplication3.Services.IServices
@@ -10,5 +11,7 @@ namespace WebApplication3.Services.IServices
     {
         User GetById(int id);
         List<User> GetAll();
+        bool Register(RegisterRequest request);
+        AuthResponse Login(AuthRequest request);
     }
 }

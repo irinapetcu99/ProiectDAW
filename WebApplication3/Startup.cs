@@ -11,6 +11,7 @@ using WebApplication3.Repositories;
 using WebApplication3.Services.IServices;
 using WebApplication3.Services;
 using Newtonsoft;
+using WebApplication3.Auth;
 
 namespace WebApplication3
 {
@@ -36,7 +37,7 @@ namespace WebApplication3
             });
             services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
-
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IUserRoleRepository, UserRoleRepository>();
@@ -45,6 +46,7 @@ namespace WebApplication3
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IProdusService, ProdusService>();
             services.AddTransient<IComandaService, ComandaService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,16 +62,22 @@ namespace WebApplication3
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSpaStaticFiles();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
 
             app.UseRouting();
+
+            app.UseMiddleware<Jwt>();
 
             app.UseEndpoints(endpoints =>
             {

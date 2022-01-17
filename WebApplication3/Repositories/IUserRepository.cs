@@ -8,5 +8,10 @@ namespace WebApplication3.Repositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
+        User GetByUserAndPassword(string email, string password);
+        User GetByEmail(string email);
+
+        User GetUserAllDetails(int id);
+        List<User> GetUsersAllDetails();
     }
 }
